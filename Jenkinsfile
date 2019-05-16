@@ -13,7 +13,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                scripts {
+                script {
                     app = docker.build('therecomed1940/train-schedule')
                     app.inside {
                         sh 'echo $(curl http://localhost:8080)'
@@ -26,7 +26,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                scripts {
+                script {
                     docker.withRegistry('https://docker.mycorp.com/', 'docker_hub_login') {
                         docker.push("${env.BUILD_NUMBER}")
                         docker.push('latest')
